@@ -12,16 +12,28 @@
 // Class extension
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray *cards; // array of Card objects
-@property (nonatomic) int score;
+@property (nonatomic, readwrite) NSString *gameStatus;
+@property (nonatomic, readwrite) int score;
 @end
 
-
+// Implementation
+// TODO: message returning status of the game after action 
+// so that it can be logged or displayed in a fancy blending
+// letters animation
 @implementation CardMatchingGame
+
+///
+// Lazy Instatiations
+///
 
 - (NSMutableArray *)cards {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
 }
+
+///
+// Methods
+///
 
 - (id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck {
     self = [super init];
@@ -37,6 +49,7 @@
     return self;
 }
 
+// Method below needs REFACTORING
 // Brains of the game
 #define MATCH_BONUS 4
 #define MISMATCH_PENALTY 2
@@ -44,9 +57,9 @@
 
 - (void)flipCardAtIndex:(NSUInteger)index {
     Card *card = self.cards[index];
-    
-    if (!card.isUnplayable) {
-        if (!card.isFaceUp) {
+    // Another way of doing this would be to keep another array with all the cards
+    // that have already been flipped up and just match them if array is not empty
+    if (!card.isUnplayable && !card.isFaceUp) {
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.unplayable) {
                     int matchScore = [card match:@[otherCard]];
@@ -54,22 +67,30 @@
                         otherCard.unplayable = YES;
                         card.unplayable = YES;
                         self.score += matchScore * MATCH_BONUS;
+                        self.gameStatus = [NSString stringWithFormat:@"Matched %@ & %@ for %d points.",card.contents, otherCard.contents, matchScore];
                     }
                     else {
                         otherCard.faceUp = NO;
                         self.score -= MISMATCH_PENALTY;
+                        self.gameStatus = [NSString stringWithFormat:@"%@ & %@ don't match! %d points of penalty",card.contents, otherCard.contents, MISMATCH_PENALTY];
                     }
                     break;
                 }
             }
             self.score -= FLIP_COST;
         }
-        card.faceUp = !card.isFaceUp;
+    else {
+        self.gameStatus = [NSString stringWithFormat:@"Flipped %@", card.contents];
     }
+    card.faceUp = !card.isFaceUp;
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index {
     return index < [self.cards count] ? self.cards[index] : nil;
+}
+
+- (NSString *)modelStatus {
+    return Nil;
 }
 
 

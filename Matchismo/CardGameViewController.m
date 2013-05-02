@@ -53,6 +53,7 @@
 
     self.flipCount++;
     NSLog(@"flips updated to %d", self.flipCount);
+    if (self.game.gameStatus) NSLog(@"%@", self.game.gameStatus);
 
 }
 

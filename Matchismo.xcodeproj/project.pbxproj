@@ -115,10 +115,10 @@
 		90875DD2172035DF00DFDCC6 /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
+				9042D506172062CF007CFC18 /* Model */,
 				90875DDB172035DF00DFDCC6 /* CardGameAppDelegate.h */,
 				90875DDC172035DF00DFDCC6 /* CardGameAppDelegate.m */,
 				90875DE4172035DF00DFDCC6 /* MainStoryboard.storyboard */,
-				9042D506172062CF007CFC18 /* Model */,
 				90875DE7172035DF00DFDCC6 /* CardGameViewController.h */,
 				90875DE8172035DF00DFDCC6 /* CardGameViewController.m */,
 				90875DD3172035DF00DFDCC6 /* Supporting Files */,
