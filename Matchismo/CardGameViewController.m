@@ -52,9 +52,9 @@
     [self updateUI];
 
     self.flipCount++;
-    NSLog(@"flips updated to %d", self.flipCount);
-    if (self.game.gameStatus) NSLog(@"%@", self.game.gameStatus);
-
+    NSString *gameStatus = self.game.gameStatus; // Careful! getting status resets the string!
+    if (gameStatus) NSLog(@"%@", gameStatus);
+    // NSLog(@"flips updated to %d", self.flipCount);
 }
 
 @end

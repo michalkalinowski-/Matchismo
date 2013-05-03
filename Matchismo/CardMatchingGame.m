@@ -23,12 +23,18 @@
 @implementation CardMatchingGame
 
 ///
-// Lazy Instatiations
+// Lazy Instatiations + Getters
 ///
 
 - (NSMutableArray *)cards {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
+}
+
+- (NSString *)gameStatus {
+    NSString *p = [_gameStatus copy];
+    _gameStatus = @"";
+    return p;
 }
 
 ///
@@ -49,6 +55,30 @@
     return self;
 }
 
+- (NSArray *)flippedCards {
+    NSMutableArray *fCards= [[NSMutableArray alloc]init];
+    for (Card *card in self.cards) {
+        if (card.isFaceUp && !card.isUnplayable) {
+            [fCards addObject:card];
+        }
+    }
+    return fCards;
+}
+
+// Make a set of cards unplayable
+- (void)makeCardsUnplayable:(NSArray *)cards {
+    for (Card *card in cards) {
+        card.unplayable = YES;
+    }
+}
+
+// Flip a set of cards up or down
+- (void)flipCards:(NSArray *)cards Up:(BOOL)up {
+    for (Card *card in cards) {
+        card.faceUp = up;
+    }
+}
+
 // Method below needs REFACTORING
 // Brains of the game
 #define MATCH_BONUS 4
@@ -57,32 +87,38 @@
 
 - (void)flipCardAtIndex:(NSUInteger)index {
     Card *card = self.cards[index];
-    // Another way of doing this would be to keep another array with all the cards
-    // that have already been flipped up and just match them if array is not empty
-    if (!card.isUnplayable && !card.isFaceUp) {
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isFaceUp && !otherCard.unplayable) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        otherCard.unplayable = YES;
-                        card.unplayable = YES;
-                        self.score += matchScore * MATCH_BONUS;
-                        self.gameStatus = [NSString stringWithFormat:@"Matched %@ & %@ for %d points.",card.contents, otherCard.contents, matchScore];
-                    }
-                    else {
-                        otherCard.faceUp = NO;
-                        self.score -= MISMATCH_PENALTY;
-                        self.gameStatus = [NSString stringWithFormat:@"%@ & %@ don't match! %d points of penalty",card.contents, otherCard.contents, MISMATCH_PENALTY];
-                    }
-                    break;
-                }
+    NSArray *flippedCards = [self flippedCards];
+    
+    // turning card face up and there are other cards to check match
+    if (!card.isFaceUp) {
+        if (flippedCards.count != 0) {
+            int matchScore = [card match:flippedCards];
+            // cards match
+            if (matchScore) {
+                [self makeCardsUnplayable:flippedCards];
+                card.unplayable = YES;
+                self.score += matchScore * MATCH_BONUS;
+                self.gameStatus = [NSString stringWithFormat:@"Matched %@ & %@ for %d points.",card.contents, [flippedCards componentsJoinedByString:@", "], matchScore * MATCH_BONUS];
             }
+            // no match
+            else {
+                [self flipCards:flippedCards Up:NO];
+                self.score -= MISMATCH_PENALTY;
+                self.gameStatus = [NSString stringWithFormat:@"%@ & %@ don't match! %d points of penalty",card.contents, [flippedCards componentsJoinedByString:@", "], MISMATCH_PENALTY];
+            }
+        }
+        card.faceUp = YES;
+    }
+    
+    // allow flip down only if one card is selected
+    else if (card.faceUp) {
+        if (!flippedCards.count == 0) {
+            self.gameStatus = [NSString stringWithFormat:@"Flipped %@", card.contents];
+            card.faceUp = NO;
             self.score -= FLIP_COST;
         }
-    else {
-        self.gameStatus = [NSString stringWithFormat:@"Flipped %@", card.contents];
     }
-    card.faceUp = !card.isFaceUp;
+    
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index {

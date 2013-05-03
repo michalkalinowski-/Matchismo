@@ -10,6 +10,10 @@
 
 @implementation PlayingCard
 
+- (NSString *)description {
+    return self.contents;
+}
+
 - (int)match:(NSArray *)otherCards {
     int score = 0;
     if ([otherCards count] == 1) {

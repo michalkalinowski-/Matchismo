@@ -27,6 +27,5 @@
 // - Card & Card don't match, X points of penalty
 // - Flipped up Card
 @property (nonatomic, readonly) NSString * gameStatus;
-
 @property (nonatomic, readonly) int score;
 @end
