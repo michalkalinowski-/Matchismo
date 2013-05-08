@@ -37,6 +37,12 @@
     return p;
 }
 
+// Default game mode is to match two cards
+- (NSInteger)mode {
+    if (!_mode) _mode = 2;
+    return _mode;
+}
+
 ///
 // Methods
 ///
@@ -55,6 +61,7 @@
     return self;
 }
 
+// Return an array of cards that are currently flipped up and playable
 - (NSArray *)flippedCards {
     NSMutableArray *fCards= [[NSMutableArray alloc]init];
     for (Card *card in self.cards) {
@@ -95,10 +102,12 @@
             int matchScore = [card match:flippedCards];
             // cards match
             if (matchScore) {
-                [self makeCardsUnplayable:flippedCards];
-                card.unplayable = YES;
-                self.score += matchScore * MATCH_BONUS;
-                self.gameStatus = [NSString stringWithFormat:@"Matched %@ & %@ for %d points.",card.contents, [flippedCards componentsJoinedByString:@", "], matchScore * MATCH_BONUS];
+                if (flippedCards.count == self.mode - 1) {
+                    [self makeCardsUnplayable:flippedCards];
+                    card.unplayable = YES;
+                    self.score += matchScore * MATCH_BONUS;
+                    self.gameStatus = [NSString stringWithFormat:@"Matched %@ & %@ for %d points.",card.contents, [flippedCards componentsJoinedByString:@", "], matchScore * MATCH_BONUS];
+                }
             }
             // no match
             else {

@@ -23,6 +23,7 @@
 		90875DE3172035DF00DFDCC6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90875DE2172035DF00DFDCC6 /* Default-568h@2x.png */; };
 		90875DE6172035DF00DFDCC6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90875DE4172035DF00DFDCC6 /* MainStoryboard.storyboard */; };
 		90875DE9172035DF00DFDCC6 /* CardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90875DE8172035DF00DFDCC6 /* CardGameViewController.m */; };
+		90A4EDE8173ACA110081DEDA /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A4EDE7173ACA110081DEDA /* card.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		90875DE5172035DF00DFDCC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		90875DE7172035DF00DFDCC6 /* CardGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardGameViewController.h; sourceTree = "<group>"; };
 		90875DE8172035DF00DFDCC6 /* CardGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardGameViewController.m; sourceTree = "<group>"; };
+		90A4EDE7173ACA110081DEDA /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		90875DD3172035DF00DFDCC6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90A4EDE7173ACA110081DEDA /* card.png */,
 				90875DD4172035DF00DFDCC6 /* Matchismo-Info.plist */,
 				90875DD5172035DF00DFDCC6 /* InfoPlist.strings */,
 				90875DD8172035DF00DFDCC6 /* main.m */,
@@ -197,6 +200,7 @@
 				90875DE1172035DF00DFDCC6 /* Default@2x.png in Resources */,
 				90875DE3172035DF00DFDCC6 /* Default-568h@2x.png in Resources */,
 				90875DE6172035DF00DFDCC6 /* MainStoryboard.storyboard in Resources */,
+				90A4EDE8173ACA110081DEDA /* card.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

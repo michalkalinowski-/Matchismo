@@ -28,4 +28,5 @@
 // - Flipped up Card
 @property (nonatomic, readonly) NSString * gameStatus;
 @property (nonatomic, readonly) int score;
+@property (nonatomic) NSInteger mode;
 @end
