@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *modeControl;
 @property (strong, nonatomic) CardMatchingGame *game;
 @end
 
@@ -50,17 +49,6 @@
     self.flipsLabel.text = [NSString stringWithFormat:@"FLIPS: %d", self.flipCount];
 }
 
-// Segmented Control Action: Change game mode (match 2 or 3 cards)
-- (IBAction)changeGameMode:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 0) {
-        self.game.mode = 2;
-    }
-    else {
-        self.game.mode = 3;
-    }
-    // not sure why simple ? : doesnt work here?!
-}
-
 // Deal Button Action, reset the score and redial the cards
 - (IBAction)resetGame:(UIButton *)sender {
     NSInteger mode = self.game.mode;
@@ -68,14 +56,12 @@
     self.flipCount = 0;
     self.game.mode = mode; // Restore game mode as it is the only
                           // game property that is retained
-    self.modeControl.enabled = YES;
     [self updateUI];
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
-    self.modeControl.enabled = NO; // Disable mode selection once game has started
     [self updateUI];
     
     NSString *gameStatus = self.game.gameStatus; // Careful! getting status resets the string!
