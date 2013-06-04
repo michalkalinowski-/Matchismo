@@ -14,6 +14,7 @@
 @end
 
 @implementation GameResult
+
 // designated initializer
 - (id)init {
     self = [super init];
@@ -52,6 +53,18 @@
     _score = score;
     self.end = [NSDate date];
     [self synchronize];
+}
+
+- (NSComparisonResult)compareScores:(GameResult *)otherResult {
+    if (self.score > otherResult.score) {
+        return NSOrderedAscending;
+    }
+    else if (self.score == otherResult.score) {
+        return NSOrderedSame;
+    }
+    else {
+        return NSOrderedDescending;
+    }
 }
 
 // Write last score to NSUserDefaults

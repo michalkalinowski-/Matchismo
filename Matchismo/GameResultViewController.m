@@ -22,14 +22,16 @@
 
 - (void)updateUI {
     NSString *displayText = @"";
-    for (GameResult *r in [GameResult allGameResults]) {
+    SEL sortSelector = @selector(compareScores:);
+    for (GameResult *r in [[GameResult allGameResults]sortedArrayUsingSelector:sortSelector]) {
         displayText = [displayText stringByAppendingFormat:@"Score: %d (%@, %0g)\n", r.score, r.start, round(r.duration)];
     }
     self.dispay.text = displayText;
     
 }
 
-// Setup Code
+
+# pragma mark - Setup Code
 - (void)setup {
     // Initialization that can not wait till viewDidLoad
 }

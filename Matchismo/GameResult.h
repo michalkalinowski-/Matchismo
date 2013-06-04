@@ -16,5 +16,9 @@
 @property (nonatomic, readonly) NSDate *end;
 @property (nonatomic, readonly) NSTimeInterval duration;
 @property (nonatomic) int score;
- 
+
+// Take other result and compare scores
+// Return NSComparisionResult rather than BOOL because
+// it will be used for sorting arrays (as selector)
+- (NSComparisonResult)compareScores:(GameResult *)otherResult;
 @end
