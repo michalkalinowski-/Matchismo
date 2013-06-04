@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "GameResult.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -16,9 +17,15 @@
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) GameResult *result;
 @end
 
 @implementation CardGameViewController
+
+- (GameResult *)result {
+    if (!_result) _result = [[GameResult alloc] init];
+    return _result;
+}
 
 - (CardMatchingGame *)game {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc] init]];
@@ -52,10 +59,11 @@
 // Deal Button Action, reset the score and redial the cards
 - (IBAction)resetGame:(UIButton *)sender {
     NSInteger mode = self.game.mode;
-    self.game = nil; // Make sure I'm not leaking memory here
+    self.game = nil;        // Reset game model
+    self.result = nil;      // Reset game result
     self.flipCount = 0;
-    self.game.mode = mode; // Restore game mode as it is the only
-                          // game property that is retained
+    self.game.mode = mode;  // Restore game mode as it is the only
+                            // game property that is retained
     [self updateUI];
 }
 
@@ -66,7 +74,8 @@
     
     NSString *gameStatus = self.game.gameStatus; // Careful! getting status resets the string!
     if (gameStatus) NSLog(@"%@", gameStatus);
-    // NSLog(@"flips updated to %d", self.flipCount);
+    self.result.score = self.game.score; // Update score. It may be better placed in the deal button action,
+                                         // but won't record end time correctly.
 }
 
 @end
