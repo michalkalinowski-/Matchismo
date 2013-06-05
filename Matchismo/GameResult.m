@@ -96,7 +96,7 @@
         }
     }] lastObject];
 
-    // revise this block, maybe there's no need to touch NSUserDefaults every time
+    // TODO: revise this block, maybe there's no need to touch NSUserDefaults every time
     // since it's not an efficient operation
     if ([mutableGameResults count] < NUM_HIGH_SCORES) {
         mutableGameResults[[self.start description]] = [self asPropertyList];
