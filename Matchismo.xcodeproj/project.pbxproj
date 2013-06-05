@@ -12,6 +12,9 @@
 		9042D509172062FD007CFC18 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042D508172062FD007CFC18 /* Deck.m */; };
 		9042D50C1720631E007CFC18 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042D50B1720631E007CFC18 /* PlayingCard.m */; };
 		9042D50F17206338007CFC18 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 9042D50E17206338007CFC18 /* PlayingCardDeck.m */; };
+		90439F0B175FA97200CB8B39 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 90439F0A175FA97200CB8B39 /* heart.png */; };
+		90439F0F175FAA1100CB8B39 /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 90439F0E175FAA1100CB8B39 /* network.png */; };
+		90439F11175FAA3700CB8B39 /* people_family.png in Resources */ = {isa = PBXBuildFile; fileRef = 90439F10175FAA3700CB8B39 /* people_family.png */; };
 		90875DCD172035DF00DFDCC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90875DCC172035DF00DFDCC6 /* UIKit.framework */; };
 		90875DCF172035DF00DFDCC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90875DCE172035DF00DFDCC6 /* Foundation.framework */; };
 		90875DD1172035DF00DFDCC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90875DD0172035DF00DFDCC6 /* CoreGraphics.framework */; };
@@ -39,6 +42,9 @@
 		9042D50B1720631E007CFC18 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCard.m; path = Model/PlayingCard.m; sourceTree = "<group>"; };
 		9042D50D17206338007CFC18 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		9042D50E17206338007CFC18 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
+		90439F0A175FA97200CB8B39 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
+		90439F0E175FAA1100CB8B39 /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
+		90439F10175FAA3700CB8B39 /* people_family.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people_family.png; sourceTree = "<group>"; };
 		90875DC9172035DF00DFDCC6 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90875DCC172035DF00DFDCC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		90875DCE172035DF00DFDCC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -141,6 +147,9 @@
 		90875DD3172035DF00DFDCC6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90439F0A175FA97200CB8B39 /* heart.png */,
+				90439F0E175FAA1100CB8B39 /* network.png */,
+				90439F10175FAA3700CB8B39 /* people_family.png */,
 				90A4EDE7173ACA110081DEDA /* card.png */,
 				90875DD4172035DF00DFDCC6 /* Matchismo-Info.plist */,
 				90875DD5172035DF00DFDCC6 /* InfoPlist.strings */,
@@ -211,6 +220,9 @@
 				90875DE3172035DF00DFDCC6 /* Default-568h@2x.png in Resources */,
 				90875DE6172035DF00DFDCC6 /* MainStoryboard.storyboard in Resources */,
 				90A4EDE8173ACA110081DEDA /* card.png in Resources */,
+				90439F0B175FA97200CB8B39 /* heart.png in Resources */,
+				90439F0F175FAA1100CB8B39 /* network.png in Resources */,
+				90439F11175FAA3700CB8B39 /* people_family.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

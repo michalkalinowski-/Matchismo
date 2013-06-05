@@ -300,7 +300,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Card Game" id="H1Z-Js-mod"/>
+                    <tabBarItem key="tabBarItem" title="Card Game" image="heart.png" id="H1Z-Js-mod"/>
                     <connections>
                         <outlet property="flipsLabel" destination="68H-hu-hkC" id="5FG-vR-WDy"/>
                         <outlet property="scoreLabel" destination="u5e-OE-6w3" id="8LU-bM-vBd"/>
@@ -344,7 +344,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Best Scores" id="PzR-JC-Rde"/>
+                    <tabBarItem key="tabBarItem" title="Best Scores" image="people_family.png" id="PzR-JC-Rde"/>
                     <connections>
                         <outlet property="dispay" destination="SgM-0u-gKx" id="7gV-d0-Niw"/>
                     </connections>
@@ -382,13 +382,18 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Set Game" id="m2h-E5-YHo"/>
+                    <tabBarItem key="tabBarItem" title="Set Game" image="network.png" id="m2h-E5-YHo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vtG-OZ-L8m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-343" y="290"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="heart.png" width="26" height="26"/>
+        <image name="network.png" width="26" height="26"/>
+        <image name="people_family.png" width="26" height="26"/>
+    </resources>
     <classes>
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>

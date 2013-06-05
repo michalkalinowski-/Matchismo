@@ -20,11 +20,21 @@
     [self updateUI];
 }
 
+// TODO: take string formatting duty to the new method
+// and change it into attributed string with nice big font for score and small
+// one for details. Add awesome colors as well.
 - (void)updateUI {
     NSString *displayText = @"";
+    // setting sorting selector
     SEL sortSelector = @selector(compareScores:);
+    // formating date nicely
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    // build a nice long string of results
     for (GameResult *r in [[GameResult allGameResults]sortedArrayUsingSelector:sortSelector]) {
-        displayText = [displayText stringByAppendingFormat:@"Score: %d (%@, %0g)\n", r.score, r.start, round(r.duration)];
+        displayText = [displayText stringByAppendingFormat:@"%d\n(%@)\n", r.score,
+                       [formatter stringFromDate:r.start]];
     }
     self.dispay.text = displayText;
     
