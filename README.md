@@ -6,3 +6,7 @@ iTunes Link (lectures and handouts): https://itunes.apple.com/us/course/coding-t
 Course webpage: http://www.stanford.edu/class/cs193p/cgi-bin/drupal/
 
 Hope you like it!
+
+
+--------------------------
+*Tab Bar icons by [APP-BITS](http://app-bits.com)*
