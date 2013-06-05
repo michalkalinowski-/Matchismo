@@ -59,6 +59,7 @@
 // Deal Button Action, reset the score and redial the cards
 - (IBAction)resetGame:(UIButton *)sender {
     NSInteger mode = self.game.mode;
+    self.result.score = self.game.score; // Update High Scores
     self.game = nil;        // Reset game model
     self.result = nil;      // Reset game result
     self.flipCount = 0;
@@ -74,8 +75,6 @@
     
     NSString *gameStatus = self.game.gameStatus; // Careful! getting status resets the string!
     if (gameStatus) NSLog(@"%@", gameStatus);
-    self.result.score = self.game.score; // Update score. It may be better placed in the deal button action,
-                                         // but won't record end time correctly.
 }
 
 @end

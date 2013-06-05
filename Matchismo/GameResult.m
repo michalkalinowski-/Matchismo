@@ -14,7 +14,9 @@
 @end
 
 @implementation GameResult
+{/*make first pragma mark section appear workaround */}
 
+# pragma mark - Constructors
 // designated initializer
 - (id)init {
     self = [super init];
@@ -45,6 +47,8 @@
     return self;
 }
 
+# pragma mark - Getters + Setters
+
 - (NSTimeInterval)duration {
     return [self.end timeIntervalSinceDate:self.start];
 }
@@ -55,6 +59,7 @@
     [self synchronize];
 }
 
+# pragma mark - Compare methods
 - (NSComparisonResult)compareScores:(GameResult *)otherResult {
     if (self.score > otherResult.score) {
         return NSOrderedAscending;
@@ -67,18 +72,46 @@
     }
 }
 
+# pragma mark - Utilities
 // Write last score to NSUserDefaults
 // Need to convert game result to property list before writting it down
 // Game Score is identified by unique start time -> that is it's dictionary key
 #define ALL_RESULTS_KEY @"AllGameResult"
+#define NUM_HIGH_SCORES 5
  
 - (void)synchronize {
+    // Get previously synchronized data.
     NSMutableDictionary *mutableGameResults = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:ALL_RESULTS_KEY] mutableCopy];
     if (!mutableGameResults) mutableGameResults = [[NSMutableDictionary alloc] init];
-    mutableGameResults[[self.start description]] = [self asPropertyList]; // NSDate can't be dictionary key, strings can
+    
+    // Check if my result makes it to top scores
+    NSString *lastScoreKey = [[mutableGameResults keysSortedByValueUsingComparator:^(id r1, id r2) {
+        int score1 = [r1[SCORE_KEY] intValue];
+        int score2 = [r2[SCORE_KEY] intValue];
+        if (score1 > score2) {
+            return NSOrderedAscending;
+        }
+        else {
+            return NSOrderedDescending;
+        }
+    }] lastObject];
+
+    // revise this block, maybe there's no need to touch NSUserDefaults every time
+    // since it's not an efficient operation
+    if ([mutableGameResults count] < NUM_HIGH_SCORES) {
+        mutableGameResults[[self.start description]] = [self asPropertyList];
+    }
+    else if ([mutableGameResults count] >= NUM_HIGH_SCORES &&
+             self.score > [mutableGameResults[lastScoreKey][SCORE_KEY] intValue])
+    {
+        mutableGameResults[[self.start description]] = [self asPropertyList];
+        [mutableGameResults removeObjectForKey:lastScoreKey];
+    }
+
+
     [[NSUserDefaults standardUserDefaults] setObject:mutableGameResults forKey:ALL_RESULTS_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize]; // write it down
-    
+
 }
 
 - (id)asPropertyList {
