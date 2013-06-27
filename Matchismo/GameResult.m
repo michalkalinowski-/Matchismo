@@ -8,6 +8,7 @@
 
 #import "GameResult.h"
 
+// Class extension
 @interface GameResult()
 @property (nonatomic, readwrite) NSDate *start;
 @property (nonatomic, readwrite) NSDate *end;
@@ -15,7 +16,6 @@
 
 @implementation GameResult
 {/*make first pragma mark section appear workaround */}
-
 # pragma mark - Constructors
 // designated initializer
 - (id)init {
@@ -48,7 +48,6 @@
 }
 
 # pragma mark - Getters + Setters
-
 - (NSTimeInterval)duration {
     return [self.end timeIntervalSinceDate:self.start];
 }
@@ -73,12 +72,13 @@
 }
 
 # pragma mark - Utilities
+// Defines
+#define ALL_RESULTS_KEY @"AllGameResult"
+#define NUM_HIGH_SCORES 5
+
 // Write last score to NSUserDefaults
 // Need to convert game result to property list before writting it down
 // Game Score is identified by unique start time -> that is it's dictionary key
-#define ALL_RESULTS_KEY @"AllGameResult"
-#define NUM_HIGH_SCORES 5
- 
 - (void)synchronize {
     // Get previously synchronized data.
     NSMutableDictionary *mutableGameResults = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:ALL_RESULTS_KEY] mutableCopy];

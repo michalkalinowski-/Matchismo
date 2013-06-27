@@ -302,7 +302,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Card Game" image="heart.png" id="H1Z-Js-mod"/>
                     <connections>
-                        <outlet property="flipsLabel" destination="68H-hu-hkC" id="5FG-vR-WDy"/>
+                        <outlet property="flipsLabel" destination="68H-hu-hkC" id="hZP-Xa-2DD"/>
                         <outlet property="scoreLabel" destination="u5e-OE-6w3" id="8LU-bM-vBd"/>
                         <outletCollection property="cardButtons" destination="Jc8-gq-sA4" id="Mj7-NM-T59"/>
                         <outletCollection property="cardButtons" destination="hoX-Dq-n2v" id="Tft-OF-Fi9"/>
@@ -401,24 +401,6 @@
         <image name="network.png" width="26" height="26"/>
         <image name="people_family.png" width="26" height="26"/>
     </resources>
-    <classes>
-        <class className="CardGameViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
-                <relationship kind="action" name="resetGame:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="GameResultViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameResultViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dispay" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

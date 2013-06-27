@@ -9,14 +9,18 @@
 #import "GameResultViewController.h"
 #import "GameResult.h"
 
+// Class extension
 @interface GameResultViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *dispay;
 @end
 
-@implementation GameResultViewController
 
+@implementation GameResultViewController
+{/*make first pragma mark section appear workaround */}
+# pragma mark - Utilities
 - (void)updateUI {
     NSMutableAttributedString * displayText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"HIGH SCORES\n\n"]];
+    
     // Is putting dicts below in #def a bad coding style?
     NSDictionary *scoreFontAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:36]};
     NSDictionary *detailsFontAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:10]};
@@ -34,10 +38,6 @@
         
         [displayText appendAttributedString:scoreString];
         [displayText appendAttributedString:detailsString];
-
-//        legacy version (regular string):
-//        displayText = [displayText stringByAppendingFormat:@"%d\n(%@)\n", r.score,
-//                       [formatter stringFromDate:r.start]];
     }
     self.dispay.attributedText = displayText;
     
